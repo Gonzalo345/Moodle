@@ -50,20 +50,44 @@ services:
         networks:
             - nginx-php74-mysql8
 
-    # mariadb
-    mariadb:
-        image: mariadb
-        container_name: mariadb10.5-container
+    # moodle
+    moodle-service:
+        build:
+            context: .
+            dockerfile: ./moodle/Dockerfile
+        container_name: modle-container
         ports:
-            - "4306:3307"
+            - "8000:80"
         volumes:
-            - ./mariadb:/var/lib/mysql
-        environment:
-            - MYSQL_ROOT_PASSWORD=password
-            - MYSQL_DATABASE=onboarding
-            - MYSQL_USER=us_onboarding
-            - MYSQL_PASSWORD=onboarding   
-        volumes:
-            - ./mariadb:/var/lib/mysql
+            - ./app:/var/www/project
         networks:
             - nginx-php74-mysql8
+
+
+    # node
+    #node-service:
+    #    image: node:latest
+    #    container_name: node-container
+    #    volumes:
+    #        - ./app:/var/www/project
+    #    working_dir: /var/www/project
+    #    networks:
+    #        - nginx-php74-mysql8
+    #
+    # mariadb
+    #    mariadb:
+    #   image: mariadb
+    #   container_name: mariadb10.5-container
+    #   ports:
+    #       - "4306:3307"
+    #   volumes:
+    #       - ./mariadb:/var/lib/mysql
+    #   environment:
+    #       - MYSQL_ROOT_PASSWORD=password
+    #       - MYSQL_DATABASE=onboarding
+    #       - MYSQL_USER=us_onboarding
+    #       - MYSQL_PASSWORD=onboarding   
+    #   volumes:
+    #       - ./mariadb:/var/lib/mysql
+    #   networks:
+    #       - nginx-php74-mysql8
