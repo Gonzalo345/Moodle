@@ -30,8 +30,8 @@ RUN apt-get update \
     && mkdir /docker-entrypoint.d
 
 
-VOLUME /moodledata
+#VOLUME /moodledata
 EXPOSE 80
 
 #ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["-e", "info", "-D", "FOREGROUND"]
+#CMD ["-e", "info", "-D", "FOREGROUND"]
